@@ -1,8 +1,9 @@
 import * as React from "react";
+import { Button } from "react-native-web";
 import Component from '@reactions/component'
 
 import { getMidiPlayer } from "../get-midi-player/";
-import { RTouchable } from "../react-utils/";
+import { RTouchable, Separator } from "../react-utils/";
 
 import { MidiTicker } from './MidiTicker'
 import { MidiEventTicker } from './MidiEventTicker'
@@ -15,10 +16,15 @@ const getNoteKey = ({ noteName, track, channel }) => `${noteName}_${track}_${cha
 
 export const renderDefaultMidiPlayerControls = ({ pause, play, restart, stop }) => (
   <React.Fragment>
-    <RTouchable onPress={play}>Play</RTouchable>
-    <RTouchable onPress={pause}>Pause</RTouchable>
-    <RTouchable onPress={stop}>Stop</RTouchable>
-    <RTouchable onPress={restart}>Restart</RTouchable>
+    <Separator vertical={10} />
+    <Button color="#17BF63" onPress={play} title={"Play"}/>
+    <Separator vertical={10}/>
+    <Button color="#17BF63" onPress={pause} title={"Pause"}/>
+    <Separator vertical={10} />
+    <Button color="#17BF63" onPress={stop} title={"Stop"}/>
+    <Separator vertical={10} />
+    <Button color="#17BF63" onPress={restart} title={"Restart"}/>
+    <Separator vertical={10} />
   </React.Fragment>)
 }
 

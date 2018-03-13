@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Picker, Text, TextInput } from "react-native-web";
+
 import { orderedNotes, supportedOctaves, supportedScales } from "../get-notes/";
 import { ControlledSelect } from "../react-utils/";
 import { instruments } from "../constants/";
@@ -70,8 +72,9 @@ InstrumentSettings.defaultProps = {
     count: 12,
     instrument: "banjo" //"acoustic_grand_piano"
   },
-  renderLabel: (str) => <h5>{str}</h5>,
-  renderSelector: ({ state, setState, key, values }) => (<ControlledSelect
+  renderLabel: (str) => <Text style={{fontWeight:'bold'}}>{str}</Text>,
+  renderSelector: ({ state, setState, key, values }) => 
+  (<ControlledSelect
     onChange={val => setState({ [key]: val })}
     selected={state[key]}
     values={values}
@@ -88,9 +91,9 @@ InstrumentSettings.defaultProps = {
     renderSelector({ setState, state, key: 'scale', values: scales })
   ,
   renderCountLabel: ({ renderLabel }) => renderLabel("Count")
-  renderCountInput : ({ state, setState, max = 500, ...rest }) => (<input
-    type="number"
-    max={max}
+  renderCountInput : ({ state, setState, max = 500, ...rest }) => (<TextInput
+    keyboardType="numeric"
+    maxLength={max}
     value={state.count}
     onChange={event => {
       const val = event.target.value;

@@ -1,20 +1,26 @@
 import Component from "@reactions/component";
+import { View, Picker } from "react-native-web";
 import * as React from "react";
+
+export const Separator: React.StatelessComponent<{ vertical: number }> = ({
+  vertical = 0
+}) => {
+  return <View style={{ paddingVertical: vertical }} />;
+};
 
 export const ControlledSelect = ({ selected, values, onChange }) => {
   return (
-    <select
-      onChange={ev => {
-        const newValue = ev.target.value;
-        onChange(newValue);
+    <Picker
+      onValueChange={itemValue => {
+        onChange(itemValue);
       }}
-      value={selected}>
+      selectedValue={selected}>
       {values.map(val => (
-        <option key={val} value={val}>
+        <Picker.Item key={val} value={val} label={val}>
           {val}
         </option>
       ))}
-    </select>
+    </Picker>
   );
 };
 

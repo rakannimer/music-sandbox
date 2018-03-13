@@ -1,4 +1,5 @@
 import * as React from "react";
+import { View } from "react-native-web";
 import { render } from "react-dom";
 import Component from "@reactions/component";
 import { MidiPlayer } from "../react-midi-player/";
@@ -11,9 +12,8 @@ const onTick = console.warn;
 const onMidiEvent = console.log;
 
 export const GetAndRenderNotes = () => (
-  <div>
-    <div>
-      <h3> Get Notes </h3>
+  <View>
+    <View>
       <Component
         initialState={{
           startNoteName: "C",
@@ -24,7 +24,7 @@ export const GetAndRenderNotes = () => (
         }}
         render={({ state, setState }) => {
           return (
-            <div>
+            <React.Fragment>
               <MidiPlayer
                 url={
                   "https://raw.githubusercontent.com/grimmdude/MidiPlayerJS/master/demo/midi/zelda.mid"
@@ -46,10 +46,10 @@ export const GetAndRenderNotes = () => (
                   );
                 }}
               />
-            </div>
+            </React.Fragment>
           );
         }}
       />
-    </div>
-  </div>
+    </View>
+  </View>
 );
